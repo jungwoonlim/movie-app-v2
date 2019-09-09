@@ -39,5 +39,10 @@ class App extends React.Component {
     );
   }
 }
+// map ex)
+// const arr = [1,2,3,4];
+// const mapArr = arr.map(x=>x*2);
+// console.log(mapArr);
+// -> [2,4,6,8]
 
 export default App;
