@@ -3,19 +3,23 @@ import React from "react";
 
 class App extends React.Component {
   state = {
-    count: 0
+    number: 0
   };
   add = () => {
-    this.setState(current => ({ count: current.count + 1 }));
+    this.setState({
+      number: this.state.number + 1
+    });
   };
   minus = () => {
-    this.setState(current => ({ count: current.count - 1 }));
+    this.setState({
+      number: this.state.number - 1
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <h1>The number is: {this.state.count}</h1>
+        <h1>The number is: {this.state.number}</h1>
         <button onClick={this.add}>Add</button>
         <button onClick={this.minus}>Minus</button>
       </div>
