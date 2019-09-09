@@ -1,18 +1,40 @@
 import React from "react";
 
-const Food = ({ menu }) => {
-  return <h1>I like {menu}</h1>;
+const Food = ({ name, pic }) => {
+  return (
+    <div>
+      <h1>I like {name}</h1>
+      <img src={pic} />
+    </div>
+  );
 };
+
+const foodLike = [
+  {
+    name: "1",
+    image:
+      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+  },
+  {
+    name: "2",
+    image:
+      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+  },
+  {
+    name: "3",
+    image:
+      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+  }
+];
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <h1>Hello React</h1>
-        <Food menu="1"></Food>
-        <Food menu="2"></Food>
-        <Food menu="3"></Food>
-        <Food menu="4"></Food>
+        {foodLike.map(dish => (
+          <Food name={dish.name} pic={dish.image}></Food>
+        ))}
       </div>
     );
   }
