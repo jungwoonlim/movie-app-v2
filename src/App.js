@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Movie from "./components/Movie";
+// import Movie from "./components/Movie";
+import MainTitle from "./components/MainTitle";
 import "./App.css";
 
 class App extends React.Component {
@@ -33,18 +34,36 @@ class App extends React.Component {
             <span className="loader__text">Loading...</span>
           </div>
         ) : (
-          <div className="movies">
-            {movies.map((movie) => (
+          <div className="movies__board">
+            <div className="site__title">
+              <h1>Get Movie Data</h1>
+            </div>
+            <div className="main__silder">
+              <div className="main__title">
+                {movies.map((movie) => (
+                  <MainTitle
+                    key={movie.id}
+                    id={movie.id}
+                    title={movie.title}
+                    poster={movie.large_cover_image}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="movies">
+              <h1>In Moive area</h1>
+              {/* {movies.map((movie) => (
               <Movie
-                key={movie.id}
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.large_cover_image}
-                genres={movie.genres}
+              key={movie.id}
+              id={movie.id}
+              year={movie.year}
+              title={movie.title}
+              summary={movie.summary}
+              poster={movie.large_cover_image}
+              genres={movie.genres}
               />
-            ))}
+            ))} */}
+            </div>
           </div>
         )}
       </section>
