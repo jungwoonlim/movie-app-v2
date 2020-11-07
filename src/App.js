@@ -1,14 +1,18 @@
 import React from "react";
 import axios from "axios";
 // import Movie from "./components/Movie";
+import Detail from "./components/Detail";
 import MainTitle from "./components/MainTitle";
 import "./App.css";
 
 class App extends React.Component {
   state = {
     isLoading: true,
+    isSelect: true,
     movies: [],
+    selectMovie: [],
   };
+
   getMovies = async () => {
     const {
       data: {
@@ -17,16 +21,34 @@ class App extends React.Component {
     } = await axios.get(
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
+
     this.setState({ movies, isLoading: false });
   };
+
+  getSelectMovie = (imgId) => {
+    this.state.movies.map((movie) => {
+      if (movie.id === Number(imgId)) {
+        var selectMovie = new Array();
+        selectMovie.push(movie);
+        this.setState({ selectMovie, isSelect: false });
+      }
+    });
+  };
+
+  selectMovie = (event) => {
+    this.setState({ isSelect: false });
+    this.getSelectMovie(event.target.id);
+  };
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isLoading: false });
     }, 6000);
     this.getMovies();
   }
+
   render() {
-    const { isLoading, movies } = this.state;
+    const { isLoading, isSelect, movies, selectMovie } = this.state;
     return (
       <section className="container">
         {isLoading ? (
@@ -46,24 +68,29 @@ class App extends React.Component {
                     id={movie.id}
                     title={movie.title}
                     poster={movie.large_cover_image}
+                    clickHander={this.selectMovie}
                   />
                 ))}
               </div>
             </div>
-            <div className="movies">
-              <h1>In Moive area</h1>
-              {/* {movies.map((movie) => (
-              <Movie
-              key={movie.id}
-              id={movie.id}
-              year={movie.year}
-              title={movie.title}
-              summary={movie.summary}
-              poster={movie.large_cover_image}
-              genres={movie.genres}
-              />
-            ))} */}
-            </div>
+            {isSelect ? (
+              <div>
+                <h1>Plz Click Posters</h1>
+              </div>
+            ) : (
+              <div className="movies">
+                {selectMovie.map((movie) => (
+                  <Detail
+                    key={movie.id}
+                    id={movie.id}
+                    year={movie.year}
+                    title={movie.title}
+                    summary={movie.summary}
+                    genres={movie.genres}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </section>
