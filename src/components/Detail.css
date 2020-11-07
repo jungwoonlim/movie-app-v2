@@ -1,5 +1,5 @@
-.movies .detail {
-  width: 45%;
+.movie__detail .detail {
+  width: 100%;
   background-color: white;
   margin-bottom: 70px;
   display: flex;
@@ -17,6 +17,9 @@
 .detail .movie__year {
   margin: 0;
   font-weight: 300;
+  font-size: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .detail .movie__title {

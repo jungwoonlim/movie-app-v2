@@ -28,9 +28,9 @@ class App extends React.Component {
   getSelectMovie = (imgId) => {
     this.state.movies.map((movie) => {
       if (movie.id === Number(imgId)) {
-        var selectMovie = new Array();
-        selectMovie.push(movie);
-        this.setState({ selectMovie, isSelect: false });
+        var movieDetail = new Array();
+        movieDetail.push(movie);
+        this.setState({ selectMovie: movieDetail, isSelect: false });
       }
     });
   };
@@ -74,11 +74,11 @@ class App extends React.Component {
               </div>
             </div>
             {isSelect ? (
-              <div>
+              <div className="site__click">
                 <h1>Plz Click Posters</h1>
               </div>
             ) : (
-              <div className="movies">
+              <div className="movie__detail">
                 {selectMovie.map((movie) => (
                   <Detail
                     key={movie.id}
